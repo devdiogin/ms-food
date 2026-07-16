@@ -20,16 +20,16 @@ public class PaymentEntity {
     @Column(nullable = false)
     private BigDecimal amount;
 
-    @Column(nullable = false, length = 100)
+    @Column(length = 100)
     private String name;
 
-    @Column(nullable = false, length = 19)
+    @Column(length = 19)
     private String number;
 
     @Column(nullable = false, length = 7)
     private String expiration;
 
-    @Column(nullable = false, length = 3)
+    @Column(length = 3)
     private String code;
 
     @Enumerated(EnumType.STRING)
