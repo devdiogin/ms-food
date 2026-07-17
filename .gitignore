@@ -34,3 +34,8 @@ build/
 
 ### Docker ###
 docker/postgres/data
+
+### .ENV ###
+.env
+.env*
+!.env.example
