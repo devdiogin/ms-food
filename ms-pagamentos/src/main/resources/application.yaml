@@ -3,4 +3,4 @@ spring:
     name: ms-pagamentos
 
   profiles:
-    active: ${PROFILE_ACTIVE}
+    active: ${PROFILE_ACTIVE:dev}

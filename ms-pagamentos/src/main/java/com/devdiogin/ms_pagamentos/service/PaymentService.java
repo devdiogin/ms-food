@@ -38,7 +38,6 @@ public class PaymentService {
     @Transactional
     public PaymentResponseDto insert(PaymentRequestDto dto) {
         var payment = paymentMapper.toEntity(dto);
-
         payment.setStatus(Status.CREATED);
         paymentRepository.save(payment);
 
