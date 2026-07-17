@@ -4,3 +4,11 @@ spring:
 
   profiles:
     active: ${PROFILE_ACTIVE:dev}
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8081/eureka
+
+server:
+  port: 0
