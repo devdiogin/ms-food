@@ -15,22 +15,18 @@ public record PaymentRequestDto(
         @Positive(message = "Qauntia deve ser maior que 0")
         BigDecimal amount,
 
-        @NotBlank(message = "Informe o nome")
         @Size(max = 100)
         String name,
 
-        @NotBlank(message = "Informe o número")
         @Size(max = 19)
         String number,
 
-        @NotBlank(message = "Informe a expiração")
         @Size(max = 7)
         String expiration,
 
-        @NotBlank(message = "Informe o código")
         @Size(min = 3, max = 3)
         String code,
-
+        
         Status status,
 
         @NotNull(message = "Informe o Id do pedido")

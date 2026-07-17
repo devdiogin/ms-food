@@ -5,7 +5,6 @@ import com.devdiogin.ms_pagamentos.dto.PaymentResponseDto;
 import com.devdiogin.ms_pagamentos.service.PaymentService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.persistence.Table;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;

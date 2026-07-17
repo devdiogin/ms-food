@@ -26,7 +26,7 @@ public class PaymentEntity {
     @Column(length = 19)
     private String number;
 
-    @Column(nullable = false, length = 7)
+    @Column(length = 7)
     private String expiration;
 
     @Column(length = 3)
