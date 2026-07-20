@@ -1,6 +1,6 @@
 spring:
   application:
-    name: ms-pagamentos
+    name: ms-payments
 
   profiles:
     active: ${PROFILE_ACTIVE:dev}

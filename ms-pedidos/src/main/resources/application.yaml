@@ -1,6 +1,6 @@
 spring:
   application:
-    name: ms-pedidos
+    name: ms-orders
 
   profiles:
     active: ${PROFILE_ACTIVE:dev}
