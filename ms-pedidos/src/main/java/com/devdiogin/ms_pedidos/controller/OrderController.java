@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -33,6 +34,12 @@ public class OrderController {
     @GetMapping("/{id}")
     public ResponseEntity<OrderResponseDto> findById(@PathVariable Long id) {
         return ResponseEntity.ok(orderService.findById(id));
+    }
+
+    @Operation(description = "Qual porta está rodando a instancia")
+    @GetMapping("/port")
+    public String returnPort(@Value("${local.server.port}") String port) {
+        return String.format("Instancia rodando na PORT: " + port);
     }
 
     @Operation(description = "Cadastrar pedido")
