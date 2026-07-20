@@ -2,13 +2,13 @@ spring:
   application:
     name: ms-pedidos
 
-profiles:
-  active: ${PROFILE_ACTIVE:dev}
+  profiles:
+    active: ${PROFILE_ACTIVE:dev}
+
+server:
+  port: 0
 
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:8081/eureka
-
-server:
-  port: 0
