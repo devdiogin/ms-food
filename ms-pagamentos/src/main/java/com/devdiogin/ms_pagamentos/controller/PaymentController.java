@@ -59,4 +59,10 @@ public class PaymentController {
     public void delete(@PathVariable Long id) {
         paymentService.delete(id);
     }
+
+    @Operation(summary = "Confirmar pagamento, meu pedido sera confirmado")
+    @PatchMapping("/{id}/confirm")
+    public void confirmPayment(@PathVariable Long id) {
+        paymentService.confirmPayment(id);
+    }
 }

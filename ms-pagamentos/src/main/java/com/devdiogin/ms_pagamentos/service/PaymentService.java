@@ -3,6 +3,7 @@ package com.devdiogin.ms_pagamentos.service;
 import com.devdiogin.ms_pagamentos.dto.PaymentRequestDto;
 import com.devdiogin.ms_pagamentos.dto.PaymentResponseDto;
 import com.devdiogin.ms_pagamentos.exception.PaymentNotFoundException;
+import com.devdiogin.ms_pagamentos.http.OrderClient;
 import com.devdiogin.ms_pagamentos.mapper.PaymentMapper;
 import com.devdiogin.ms_pagamentos.model.Status;
 import com.devdiogin.ms_pagamentos.repository.PaymentRepository;
@@ -18,6 +19,7 @@ public class PaymentService {
 
     private final PaymentRepository paymentRepository;
     private final PaymentMapper paymentMapper;
+    private final OrderClient orderClient;
 
     private static final String PAGAMENTO = "Pagamento não encontrado";
 
@@ -61,5 +63,15 @@ public class PaymentService {
                 .orElseThrow(() -> new PaymentNotFoundException(PAGAMENTO));
 
         paymentRepository.delete(payment);
+    }
+
+    @Transactional
+    public void confirmPayment(Long id) {
+        var payment = paymentRepository.findById(id)
+                .orElseThrow(() -> new PaymentNotFoundException(PAGAMENTO));
+
+        payment.setStatus(Status.CONFIRM);
+        paymentRepository.save(payment);
+        orderClient.updatePayment(payment.getOrderId());
     }
 }
