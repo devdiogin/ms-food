@@ -8,6 +8,7 @@ spring:
 server:
   port: 0
 
+# Config Eureka client
 eureka:
   client:
     service-url:
@@ -15,3 +16,13 @@ eureka:
 
   instance:
     instance-id: ${spring.application.name}:${random.int}
+
+
+# Circuit Breaker
+resilience4j:
+  circuitbreaker:
+    instances:
+      updateOrder:
+        sliding-window-size: 3
+        minimum-number-of-calls: 2
+        wait-duration-in-open-state: 50s

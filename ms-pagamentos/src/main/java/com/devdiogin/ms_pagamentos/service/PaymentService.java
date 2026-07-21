@@ -74,4 +74,13 @@ public class PaymentService {
         paymentRepository.save(payment);
         orderClient.updatePayment(payment.getOrderId());
     }
+
+    @Transactional
+    public void changeStatus(Long id) {
+        var payment = paymentRepository.findById(id)
+                .orElseThrow(() -> new PaymentNotFoundException(PAGAMENTO));
+        payment.setStatus(Status.CONFIRMED_WITHOUT_INTEGRATION);
+
+        paymentRepository.save(payment);
+    }
 }

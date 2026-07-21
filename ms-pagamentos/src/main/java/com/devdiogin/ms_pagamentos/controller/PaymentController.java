@@ -3,6 +3,7 @@ package com.devdiogin.ms_pagamentos.controller;
 import com.devdiogin.ms_pagamentos.dto.PaymentRequestDto;
 import com.devdiogin.ms_pagamentos.dto.PaymentResponseDto;
 import com.devdiogin.ms_pagamentos.service.PaymentService;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -62,7 +63,12 @@ public class PaymentController {
 
     @Operation(summary = "Confirmar pagamento, meu pedido sera confirmado")
     @PatchMapping("/{id}/confirm")
+    @CircuitBreaker(name = "updateOrder", fallbackMethod = "paymentAuthorizedWithPendingIntegration")
     public void confirmPayment(@PathVariable Long id) {
         paymentService.confirmPayment(id);
+    }
+
+    public void paymentAuthorizedWithPendingIntegration(Long id, Exception e) {
+        paymentService.changeStatus(id);
     }
 }
